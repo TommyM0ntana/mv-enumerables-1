@@ -1,25 +1,21 @@
-# Design your own Grid-based Framework ([Microverse](https://microverse.org))
+# Advanced Building Blocks - Enumerables ([Microverse](https://microverse.org))
+Build custom methods for **Enumerable** module
 
-1. Design:
-- Layout & Colors: inspired by [Vsepoka](https://vsepoka.ru)
-- Fonts: [Google Sans](https://fonts.googleapis.com/css?family=Google+Sans:100,200,300,400,500,600,700,800,900,1000)
-- Icons: [Material Icons](https://material.io/resources/icons/)
+1. Methods:
 
-2. Layout:
-- Languages: HTML, CSS
-- HTML semantic: Semantic HTML elements 
-- CSS patterns, tools, libraries & frameworks: Vanilla CSS, Flexbox, Grid
+- #my_each
+- #my_each_with_index 
+- #my_selec
+- #my_all?
+- #my_any?
+- #my_none?
+- #my_count
+- #my_map
+- #my_inject
 
-- Code guide: 
+2. Languages: Ruby
 
-3. Frontend:
-- Languages: Javascript
+3. Source code: https://github.com/b-a-a-s/mv-enumerables
 
-4. DevOps:
-- Static hosting: Github Pages
-
-5. Source code: https://github.com/b-a-a-s/mv-design-your-own-grid-based-framework
-
-6. Authors:
+4. Authors:
 - **Alex Baas** - [@b-a-a-s](https://github.com/b-a-a-s)
-- **Tommy M0ntana** - [@Tommym0ntana](https://github.com/TommyM0ntana)
