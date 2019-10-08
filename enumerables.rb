@@ -83,7 +83,7 @@ module Enumerable
     acc = initial || first
     acc = first if initial.class == Symbol
     acc = initial if !initial.class == Symbol
-    acc -= acc if acc != initial
+    acc -= acc if acc != initial && acc.class != String
     my_each { |e| acc = block.call(acc, e) } if block_given?
     my_each { |e| acc = acc.send(sym, e) } if initial && sym
     my_each { |e| acc = acc.send(initial, e) } if initial.class == Symbol
