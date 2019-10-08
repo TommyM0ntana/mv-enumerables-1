@@ -4,9 +4,10 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
+    arr = self.class == Array ? self : to_a
     i = 0
     while i < size
-      yield(self[i])
+      yield(arr[i])
       i += 1
     end
     self
@@ -31,27 +32,30 @@ module Enumerable
     arr
   end
 
-  def my_all?(pattern = nil)
-    my_each { |e| return false unless yield(e) } if block_given?
+  def my_all?(pattern = nil, &block)
+    my_each { |e| return false unless block.call(e) } if block_given?
     my_each { |e| return false unless e.class == pattern } if pattern.class == Class
     my_each { |e| return false unless e =~ pattern } if pattern.class == Regexp
-    my_each { |e| return false unless e } unless pattern
+    my_each { |e| return false unless e == pattern } if [Integer, String].include?(pattern.class)
+    my_each { |e| return false unless e } if !pattern && !block_given?
     true
   end
 
-  def my_any?(pattern = nil)
-    my_each { |e| return true if yield(e) } if block_given?
+  def my_any?(pattern = nil, &block)
+    my_each { |e| return true if block.call(e) } if block_given?
     my_each { |e| return true if e.class == pattern } if pattern.class == Class
     my_each { |e| return true if e =~ pattern } if pattern.class == Regexp
-    my_each { |e| return true if e } unless pattern
+    my_each { |e| return true if e == pattern } if [Integer, String].include?(pattern.class)
+    my_each { |e| return true if e } if !pattern && !block_given?
     false
   end
 
-  def my_none?(pattern = nil)
-    my_each { |e| return false if yield(e) } if block_given?
+  def my_none?(pattern = nil, &block)
+    my_each { |e| return false if block.call(e) } if block_given?
     my_each { |e| return false if e.class == pattern } if pattern.class == Class
     my_each { |e| return false if e =~ pattern } if pattern.class == Regexp
-    my_each { |e| return false if e } unless pattern
+    my_each { |e| return false if e == pattern } if [Integer, String].include?(pattern.class)
+    my_each { |e| return false if e } if !pattern && !block_given?
     true
   end
 
@@ -68,6 +72,8 @@ module Enumerable
   end
 
   def my_map(&block)
+    return to_enum(:my_map) unless block_given?
+
     arr = []
     my_each { |e| arr << block.call(e) } if block_given?
     arr
@@ -77,7 +83,7 @@ module Enumerable
     acc = initial || first
     acc = first if initial.class == Symbol
     acc = initial if !initial.class == Symbol
-    acc -= acc
+    acc -= acc if acc != initial
     my_each { |e| acc = block.call(acc, e) } if block_given?
     my_each { |e| acc = acc.send(sym, e) } if initial && sym
     my_each { |e| acc = acc.send(initial, e) } if initial.class == Symbol
