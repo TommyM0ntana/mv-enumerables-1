@@ -1,7 +1,7 @@
-# Advanced Building Blocks - Enumerables ([Microverse](https://microverse.org))
-Build custom methods for **Enumerable** module
+# Testing Your Ruby Code - Enumerables ([Microverse](https://microverse.org))
+Interaction with [TDD(Test Driven Development)](https://en.wikipedia.org/wiki/Test-driven_development) and [RSpec](http://rspec.info/) testing for **Enumerable** 
 
-1. Methods:
+1. Tests for Methods :
 
 - #my_each
 - #my_each_with_index 
@@ -19,3 +19,4 @@ Build custom methods for **Enumerable** module
 
 4. Authors:
 - **Alex Baas** - [@b-a-a-s](https://github.com/b-a-a-s)
+- **Tommy M0ntana** - [@TommyM0ntana](https://github.com/TommyM0ntana)
